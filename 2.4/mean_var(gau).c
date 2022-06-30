@@ -16,5 +16,5 @@ int main(){
 
     printf("Mean:%lf,Variance:%lf",a,b);
     fclose(fp);
-    #Mean:-0.000417,Variance:0.999902
+    //Mean:-0.000417,Variance:0.999902
 }
