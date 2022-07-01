@@ -3,7 +3,6 @@ import numpy as np
 import mpmath as mp
 import scipy 
 import matplotlib.pyplot as plt
-from scipy.stats import uniform
 
 #if using termux
 import subprocess
@@ -31,16 +30,19 @@ for i in range(0,maxrange):
 # 	pdf.append(test) #storing the pdf values in a list
 
 
-# def uni_cdf(x):
-#     if(x<=0):
-#         x=0
-#     return x
-
-	
-# vec_uni_cdf = scipy.vectorize(uni_cdf)
+def uni_cdf(x):
+	if(x<=0):
+			x=0
+	elif(x>1):
+		x=1
+	return x
+    
+Y = []
+for i in range(len(x)):
+	Y.append(uni_cdf(x[i]))
 
 plt.plot(x,err,'o')
-plt.plot(x,uniform.cdf(x))#plotting the CDF
+plt.plot(x,Y)#plotting the CDF
 plt.grid() #creating the grid
 plt.xlabel('$x_i$')
 plt.ylabel('$F_X(x_i)$')
@@ -52,6 +54,10 @@ plt.legend(["Numerical","Theory"])
 #subprocess.run(shlex.split("termux-open ../figs/uni_pdf.pdf"))
 #else
 plt.show() #opening the plot window
+
+
+
+
 
 
 
