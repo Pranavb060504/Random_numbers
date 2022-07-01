@@ -3,10 +3,12 @@ from cmath import sqrt
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+import mpmath
 import scipy
+def Q(x):
+	return mpmath.erfc(x/math.sqrt(2))/2
 def cdf(x):
-    return ((math.erf(x/(math.sqrt(2))))+1)/2
-
+	return 1 - Q(x)
 x = np.linspace(-5,5,30)#points on the x axis
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
