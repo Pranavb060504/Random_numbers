@@ -42,4 +42,5 @@ plt.ylabel('$F_X(x)$')
 # plt.savefig('../gau_cdf.eps')
 #subprocess.run(shlex.split("termux-open ../gau_cdf.pdf"))
 #else
+plt.legend(["Numerical","Theory"])
 plt.show() #opening the plot window
