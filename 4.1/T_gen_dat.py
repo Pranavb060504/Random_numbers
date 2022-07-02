@@ -1,17 +1,17 @@
-with open("uni1.dat","r") as f1:
-    with open ("uni2.dat","r")as f2:
-        with open ("T.dat","w") as f3:
-            a=[]
-            for line in f1:
-                a.append(line)
-            b=[]
-            for line in f2:
-                b.append(line)
-            c=[]
-            for i in range(0,len(b)):
-                c.append(float(a[i])+float(b[i]))    
-            for i in range(0,len(c)):
-                f3.write(f"{c[i]}\n")
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+int main() {
+	FILE *fp = fopen("t.dat", "w");
+	for (int i = 0; i < 1000000; i++) {
+		double u1 = (double)rand()/RAND_MAX;
+		double u2 = (double)rand()/RAND_MAX;
+		fprintf(fp, "%lf\n", u1 + u2);
+	}
+	fclose(fp);
+	return 0;	
+}
         
 
                 
