@@ -12,7 +12,7 @@ with open("uni1.dat","r") as f1:
                 c.append(float(a[i])+float(b[i]))    
             for i in range(0,len(c)):
                 f3.write(f"{c[i]}\n")
-            print(len(a),len(b),len(c))
+        
 
                 
 
