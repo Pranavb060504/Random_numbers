@@ -561,11 +561,12 @@ python3 V_cdf.py
 \solution 
 Run the below code to generate T.dat
 \begin{lstlisting}
-https://github.com/Pranavb060504/Random_numbers/blob/main/4.1/T_gen_dat.py
+https://github.com/Pranavb060504/Random_numbers/blob/main/4.1/T_gen_dat.c
 \end{lstlisting}
 Run the command below in the terminal 
 \begin{lstlisting}
-python3 T_gen_dat.py
+cc T_gen_dat.c -lm
+./a.out
 \end{lstlisting}
 \item Find the CDF of $T$.
 \begin{align}
@@ -705,7 +706,52 @@ Let $X_1 \sim  \gauss{0}{1}$ and $X_2 \sim  \gauss{0}{1}$. Plot the CDF and PDF 
 V = X_1^2 + X_2^2
 \end{equation}
 %
-
+\solution The sum of squares of k independent standard random normal variables is nothing but a  $\chi^2$ distribution with k degrees of freedom.\\
+$\chi^{2} (k)= \frac{x^{\frac{n}{2} -1}}{2^{\frac{n}{2}} \Gamma(
+\frac{n}{2})} e^{\frac{-x}{2}}, \forall x\geq 0$\\
+Here k=2,
+\begin{align}
+\therefore \chi^{2} (2)=P_{V}(v)=\frac{ e^{\frac{-x}{2}}}{2}\\
+\implies F_{V}(v)=\int_{0}^{v} \frac{ e^{\frac{-x}{2}}}{2} dx\\
+=1-e^{\frac{-x}{2}}
+\label{eq:eq6}
+\end{align}
+To generate data for V , run the following code,
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.1/V_gen.c
+\end{lstlisting}
+Run the below command in terminal,
+\begin{lstlisting}
+cc V_gen.c -lm
+./a.out
+\end{lstlisting}
+The PDF plot of the $\chi^{2} (2)$ can be obtained by running the code below,
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.1/chi_pdf.py
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 chi_pdf.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{chi_pdf}
+\caption{PDF for (6.1)}
+\label{fig:chi_PDF}
+\end{figure}
+The CDF plot of the $\chi^{2} (2)$ can be obtained by running the code below,
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.1/chi_cdf.py
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 chi_cdf.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{chi_cdf}
+\caption{PDF for (6.1)}
+\label{fig:chi_PDF}
+\end{figure}
+%
 %
 %
 \item
@@ -719,7 +765,9 @@ F_{V}(x) =
 \end{cases}
 \end{equation}
 %
-find $\alpha$.
+find $\alpha$.\\
+\solution 
+From \eqref{eq:eq6} $\alpha=0.5$
 
 %
 \item
@@ -730,10 +778,57 @@ Plot the CDF and PDf of
 A = \sqrt{V}
 \end{equation}
 %
-
-
+\solution
+\begin{align}
+&F_{A}(a)=P(A<a)=P(V<a^{2})\\
+&\text{from} \eqref{eq:eq6}, 
+=\begin{cases}
+1-e^{\frac{-a^{2}}{2}} & a>0\\
+0 & a<=0
+\end{cases}
+\\
+&\implies P_{A}(a)= \frac{d(F_{A}(a))}{da}\\
+=\begin{cases}
+ae^{\frac{-a^{2}}{2}} & a>0\\
+0 & a<=0
+\end{cases}
+\end{align}
+To generate data for A , run the following code,
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.3/A_gen.c
+\end{lstlisting}
+Run the below command in terminal,
+\begin{lstlisting}
+cc A_gen.c -lm
+./a.out
+\end{lstlisting}
+The PDF plot of A can be obtained by running the code below,
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.3/A_pdf.py
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 A_pdf.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{A_pdf}
+\caption{PDF for (6.3)}
+\label{fig:A_PDF}
+\end{figure}
+The CDF plot of the A can be obtained by running the code below,
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.3/A_cdf.py
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 A_cdf.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{A_cdf}
+\caption{CDF for (6.3)}
+\label{fig:A_PDF}
+\end{figure}
 \end{enumerate}
-
 \section{Conditional Probability}
 \begin{enumerate}[label=\thesection.\arabic*
 ,ref=\thesection.\theenumi]
