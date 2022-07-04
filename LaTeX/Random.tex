@@ -769,7 +769,7 @@ Verify by plotting  the theoretical $P_e$ with respect to $A$ from 0 to 10 dB. \
 	\begin{lstlisting}
      python3 Pplot.py 
 	\end{lstlisting}
-\item Now, consider a threshold $\delta$  while estimating $X$ from $Y$. Find the value of $\delta$ that maximizes the theoretical $P_e$.\\
+\item Now, consider a threshold $\delta$  while estimating $X$ from $Y$. Find the value of $\delta$ that minimizes the theoretical $P_e$.\\
 \solution
 Threshold=$\delta$, \\
 \begin{align}
@@ -782,23 +782,29 @@ Threshold=$\delta$, \\
 &P_e=\frac{1}{2\sqrt{2 \pi}}{( \int_{-\infty}^{\delta} e^{-\frac{(y-1)^{2}}{2}}dy+ \int_{\delta}^{\infty} e^{-\frac{(y+1)^{2}}{2}} dy)}\\
 &P_e=\frac{Q(\delta+1)+Q(1-\delta)}{2}\\
 &P_e=f(\delta)\\
-&\text{to maximize} P_e, \frac{d(f(\delta))}{d\delta}=0\\
+&\text{to minimize} P_e, \frac{d(f(\delta))}{d\delta}=0 ~\text{and} f"(\delta)>0\\
 &e^{\frac{-(1-\delta)^{2}}{2}}-e^{\frac{-(1+\delta)^{2}}{2}}=0\\
-&\therefore 1-\delta=1+\delta, \implies \delta=0
+&\therefore 1-\delta=1+\delta, \implies \delta=0\\
+&f"(\delta)=k((1-\delta)e^{\frac{-(1-\delta)^{2}}{2}}+(1+\delta)e^{\frac{-(1+\delta)^{2}}{2}})>0
 \end{align}
 \item Repeat the above exercise when 
 	\begin{align}
 		p_{X}(0) = p
 	\end{align}
 \solution
- p_{X}(0)=p \\
+ $p_{X}(0)=p$ \\
  $\implies p_{X}(1)=1-p$
  \begin{align}
  P_{e}=p P(e|s_0)+(1-p)P(e|s_1)\\
  =p Q(1+\delta)+(1-p)Q(1-\delta)\\
  \frac{d(P_{e})}{d(\delta)}=0\\
  \implies e^\frac{(1+\delta)^{2}-(1-\delta)^{2}}{2}=\frac{p}{1-p}\\
- \therefore \delta=\frac{1}{2}log(\frac{p}{1-p})
+ \therefore \delta=\frac{1}{2}log(\frac{p}{1-p})\\
+  \frac{d(P_{e})}{d(\delta)}\quad at \quad \delta+\epsilon>0 \\
+  \nonumber
+   \frac{d(P_{e})}{d(\delta)} \quad at\quad \delta-\epsilon<0 \\
+   \nonumber
+   \therefore \delta=\frac{1}{2}log(\frac{p}{1-p})\longrightarrow minima
  \end{align}
  \\
 \item Repeat the above exercise using the MAP criterion.  
