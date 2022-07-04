@@ -697,12 +697,12 @@ Use the below command in the terminal to run the code
 cc Ygen.c -lm
 ./a.out
 \end{lstlisting}
-	\item Plot $Y$ using a scatter plot.\\
+\item Plot $Y$ using a scatter plot.\\
 	\solution
-	%\begin{figure}[h]
-%\includegraphics[width=0.5\textwidth]{Yplot}
-%\caption{plot for (5.3)}
-%\label{fig:Y_Plot}
+	\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{Yplot}
+\caption{plot for (5.3)}
+\label{fig:Y_Plot}
 \end{figure}
 	Run the following code to generate the scatter plot
 	\begin{lstlisting}
@@ -712,7 +712,7 @@ cc Ygen.c -lm
 	\begin{lstlisting}
      python3 Yplot.py 
 	\end{lstlisting}
-	\item Guess how to estimate $X$ from $Y$.\\
+\item Guess how to estimate $X$ from $Y$.\\
 	\solution
 	if the received signal is  is greater than 0, then the receiver assumes $s_1$ was transmitted.\\
 if the received signal is  is less than or equal to 0, then the receiver assumes $s_0$ was transmitted, where $s_0$ and $s_1$ are cases of $X=1$and $X=-1$ respectively where threshold 0 is taken to be the decision boundary.
@@ -733,6 +733,7 @@ and
 \solution 
 Here $s_1$ and $s_2$ are equally probable ie, $p(s_1)=p(s_0)=\frac{1}{2}$ \\
 \begin{align}
+Q(x)=\frac{1}{\sqrt{2 \pi}} \int_{x}^{infty} e^{\frac{-x^{2}}{2} } dx\\
 &p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{0} e^{-\frac{(y-1)^{2}}{2}} dy\\
 \nonumber
 &=Q(1)\\
@@ -755,11 +756,11 @@ Total probability of bit error:
 \item
 Verify by plotting  the theoretical $P_e$ with respect to $A$ from 0 to 10 dB. \\
 \solution
-\begin{figure}[h]
-\includegraphics[width=0.5\textwidth]{Pplot}
-\caption{plot for (5.7)}
-\label{fig:Y_Plot}
-\end{figure}
+%\begin{figure}[h]
+%\includegraphics[width=0.5\textwidth]{Pplot}
+%\caption{plot for (5.7)}
+%\label{fig:Y_Plot}
+%\end{figure}
 	Run the following code to generate the scatter plot
 	\begin{lstlisting}
 	https://github.com/Pranavb060504/Random_numbers/blob/main/5.7/Pplot.py
@@ -790,16 +791,17 @@ Threshold=$\delta$, \\
 		p_{X}(0) = p
 	\end{align}
 \solution
-$\because p_{X}(0)=p \\
- \therefore p_{X}(1)=1-p$
+ p_{X}(0)=p \\
+ $\implies p_{X}(1)=1-p$
  \begin{align}
- &P_{e}=p P(e|s_0)+(1-p)P(e|s_1)=p Q(1+\delta)+(1-p)Q(1-\delta)\\
- &\frac{d(P_{e}){d\delta}=0\\
- &\implies (1-p)e^{\frac{-(1-\delta)^{2}}{2}}-(1-p)e^{\frac{-(1+\delta)^{2}}{2}}=0\\
- &=e^\frac{(1+\delta)^{2}-(1-\delta)^{2}}{2}=\frac{p}{1-p}\\
+ P_{e}=p P(e|s_0)+(1-p)P(e|s_1)\\
+ =p Q(1+\delta)+(1-p)Q(1-\delta)\\
+ \frac{d(P_{e})}{d(\delta)}=0\\
+ \implies e^\frac{(1+\delta)^{2}-(1-\delta)^{2}}{2}=\frac{p}{1-p}\\
+ \therefore \delta=\frac{1}{2}log(\frac{p}{1-p})
  \end{align}
+ \\
 \item Repeat the above exercise using the MAP criterion.  
-
 		\end{enumerate}
 \section{Gaussian to Other}
 \begin{enumerate}[label=\thesection.\arabic*
@@ -937,7 +939,6 @@ python3 A_cdf.py
 \section{Conditional Probability}
 \begin{enumerate}[label=\thesection.\arabic*
 ,ref=\thesection.\theenumi]
-\item
 \item
 \label{ch4_sim}
 Plot 
