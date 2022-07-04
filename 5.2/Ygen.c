@@ -8,7 +8,7 @@ int main()
     for(int i=0;i<10000;i++){
         fscanf(fp,"%f",&a);
         fscanf(f1,"%d",&t);
-        fprintf(f2,"%f\n",a+0.5*t);
+        fprintf(f2,"%f\n",a+5*t);
     }
     fclose(fp);
     fclose(f1);
