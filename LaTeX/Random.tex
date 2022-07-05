@@ -148,6 +148,7 @@ columns=fullflexible
 \providecommand{\nCr}[2]{\,^{#1}C_{#2}} % nCr
 \providecommand{\nPr}[2]{\,^{#1}P_{#2}} % nPr
 \providecommand{\mbf}{\mathbf}
+\providecommand{\gauss}[2]{\ensuremath{\mathcal{N}(#1, #2)}}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
 \providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
@@ -211,9 +212,7 @@ columns=fullflexible
 
 
 \title{%Convex Optimization in Python
-	\logo{
 	Random Numbers
-	}
 }
 %\title{
 %	\logo{Matrix Analysis through Octave}{\begin{center}\includegraphics[scale=.24]{tlc}\end{center}}{}{HAMDSP}
@@ -304,7 +303,7 @@ Use the below command in the terminal to run the code
 cc exrand.c -lm
 ./a.out
 \end{lstlisting}
-\\
+
 %
 \item
 Load the uni.dat file into python and plot the empirical CDF of $U$ using the samples in uni.dat. The CDF is defined as
@@ -418,14 +417,14 @@ The CDF of $X$ is plotted in \ref{fig:gau_cdf},Properties of the CDF:
 \item  $\Phi(0)=\frac{1}{2}$
 \item  $\Phi(-x)=1-\Phi(x)$
 \end{itemize}
-\\
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{./gau_cdf}
 \caption{The CDF of $X$}
 \label{fig:gau_cdf}
 \end{figure}
-\\
+
 \item
 Load gau.dat in python and plot the empirical PDF of $X$ using the samples in gau.dat. The PDF of $X$ is defined as
 \begin{align}
@@ -473,8 +472,9 @@ p_{X}(x) = \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}}, -\infty < x < \infty,
 repeat the above exercise theoretically.
 %
 \end{enumerate}
-\\
+
 Given ,$p_{X}(x)=\frac{1}{\sqrt{2\pi}} e^{\frac{-x^2}{2}}$\\
+\begin{align}
  &E[x]=\int_{-\infty}^{\infty} x p_{X}(x) dx\\
  &=\int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi}} x e^{-\frac{-x^2}{2}}\\
   &\because x e^{-\frac{-x^2}{2}} \text{is a odd function},\\
@@ -482,7 +482,7 @@ Given ,$p_{X}(x)=\frac{1}{\sqrt{2\pi}} e^{\frac{-x^2}{2}}$\\
    &E[x]=0\\
  &E[x^2]=\int_{-\infty}^{\infty} x^2 p_{X}(x) dx\\
  &=\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} x(xe^{-\frac{-x^2}{2}}) dx
- \end{align}
+\end{align}
   Using integration by parts:
   \begin{align}
    \label{eq:eq1}
@@ -528,7 +528,7 @@ Use the below command in the terminal to run the code:
 \begin{lstlisting}
 python3 V.py
 \end{lstlisting}
-\\ 
+ 
 Now these samples are used to plot \eqref{fig:V} by running the below code,
 \begin{lstlisting}
 https://github.com/Pranavb060504/Random_numbers/blob/main/3.1/V_cdf.py
@@ -697,6 +697,7 @@ Use the below command in the terminal to run the code
 cc Ygen.c -lm
 ./a.out
 \end{lstlisting}
+
 \item Plot $Y$ using a scatter plot.\\
 	\solution
 	\begin{figure}[h]
@@ -704,6 +705,7 @@ cc Ygen.c -lm
 \caption{plot for (5.3)}
 \label{fig:Y_Plot}
 \end{figure}
+\\
 	Run the following code to generate the scatter plot
 	\begin{lstlisting}
 	https://github.com/Pranavb060504/Random_numbers/blob/main/5.3/Yplot.py
@@ -714,8 +716,8 @@ cc Ygen.c -lm
 	\end{lstlisting}
 \item Guess how to estimate $X$ from $Y$.\\
 	\solution
-	if the received signal is  is greater than 0, then the receiver assumes $s_1$ was transmitted.\\
-if the received signal is  is less than or equal to 0, then the receiver assumes $s_0$ was transmitted, where $s_0$ and $s_1$ are cases of $X=1$and $X=-1$ respectively where threshold 0 is taken to be the decision boundary.
+	if the received signal is greater than 0, then the receiver assumes $s_1$ was transmitted.\\
+if the received signal is less than or equal to 0, then the receiver assumes $s_0$ was transmitted, where $s_0$ and $s_1$ are cases of $X=1$and $X=-1$ respectively where threshold 0 is taken to be the decision boundary.
 \begin{align}
 y>0 \implies s_1\\
 y\leq 0 \implies s_0
@@ -733,13 +735,13 @@ and
 \solution 
 Here $s_1$ and $s_2$ are equally probable ie, $p(s_1)=p(s_0)=\frac{1}{2}$ \\
 \begin{align}
-Q(x)=\frac{1}{\sqrt{2 \pi}} \int_{x}^{infty} e^{\frac{-x^{2}}{2} } dx\\
-&p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{0} e^{-\frac{(y-1)^{2}}{2}} dy\\
-\nonumber
-&=Q(1)\\
-&p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{0}^{\infty} e^{-\frac{(y+1)^{2}}{2}} dy \\
-\nonumer
-&=Q(1)
+&Q(x)=\frac{1}{\sqrt{2\pi}} \int_{x}^{\infty} e^{\frac{-x^{2}}{2} } dx\\
+&p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{0} e^{-\frac{(y-5)^2}{2}} dy
+\nonumber \\
+&=Q(5)\\
+&p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{0}^{\infty} e^{-\frac{(y+5)^{2}}{2}} dy
+\nonumber \\
+&=Q(5)
 \end{align}
 %
 \item Find $P_e$ assuming that $X$ has equiprobable symbols.\\
@@ -747,20 +749,21 @@ Q(x)=\frac{1}{\sqrt{2 \pi}} \int_{x}^{infty} e^{\frac{-x^{2}}{2} } dx\\
 Total probability of bit error:
 \begin{align}
 &P_{e}=p(s_1)p(e|s_1)+p(s_0)p(e|s_0)\\
-&=\frac{1}{2}[Q(1)+Q(1)]\\
+&=\frac{1}{2}[Q(5)+Q(5)]\\
 &\because p(s_1)=p(s_0)=\frac{1}{2},\text{X has equiprobable symbols}\\
 \nonumber
-&=Q(1)
+&=Q(5)
 \end{align}
 %
 \item
 Verify by plotting  the theoretical $P_e$ with respect to $A$ from 0 to 10 dB. \\
 \solution
-%\begin{figure}[h]
-%\includegraphics[width=0.5\textwidth]{Pplot}
-%\caption{plot for (5.7)}
-%\label{fig:Y_Plot}
-%\end{figure}
+\begin{figure}[!ht]
+\includegraphics[width=0.5\textwidth]{Pplot}
+\caption{plot for (5.7)}
+\label{fig:P_Plot}
+\end{figure}
+\\
 	Run the following code to generate the scatter plot
 	\begin{lstlisting}
 	https://github.com/Pranavb060504/Random_numbers/blob/main/5.7/Pplot.py
@@ -775,17 +778,17 @@ Threshold=$\delta$, \\
 \begin{align}
  &y>\delta \implies s_1\\
  &y \leq \delta \implies s_0\\
- &p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\delta} e^{-\frac{(y-1)^{2}}{2}} dy\\
+ &p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\delta} e^{-\frac{(y-5)^{2}}{2}} dy\\
  \nonumber
- &p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{\delta}^{\infty} e^{-\frac{(y+1)^{2}}{2}} dy\\
+ &p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{\delta}^{\infty} e^{-\frac{(y+5)^{2}}{2}} dy\\
 \nonumber
-&P_e=\frac{1}{2\sqrt{2 \pi}}{( \int_{-\infty}^{\delta} e^{-\frac{(y-1)^{2}}{2}}dy+ \int_{\delta}^{\infty} e^{-\frac{(y+1)^{2}}{2}} dy)}\\
-&P_e=\frac{Q(\delta+1)+Q(1-\delta)}{2}\\
+&P_e=\frac{1}{2\sqrt{2 \pi}}{( \int_{-\infty}^{\delta} e^{-\frac{(y-5)^{2}}{2}}dy+ \int_{\delta}^{\infty} e^{-\frac{(y+5)^{2}}{2}} dy)}\\
+&P_e=\frac{Q(\delta+5)+Q(5-\delta)}{2}\\
 &P_e=f(\delta)\\
 &\text{to minimize} P_e, \frac{d(f(\delta))}{d\delta}=0 ~\text{and} f"(\delta)>0\\
-&e^{\frac{-(1-\delta)^{2}}{2}}-e^{\frac{-(1+\delta)^{2}}{2}}=0\\
-&\therefore 1-\delta=1+\delta, \implies \delta=0\\
-&f"(\delta)=k((1-\delta)e^{\frac{-(1-\delta)^{2}}{2}}+(1+\delta)e^{\frac{-(1+\delta)^{2}}{2}})>0
+&e^{\frac{-(5-\delta)^{2}}{2}}-e^{\frac{-(5+\delta)^{2}}{2}}=0\\
+&\therefore 5-\delta=5+\delta, \implies \delta=0\\
+&f"(\delta)=k((5-\delta)e^{\frac{-(5-\delta)^{2}}{2}}+(5+\delta)e^{\frac{-(5+\delta)^{2}}{2}})>0
 \end{align}
 \item Repeat the above exercise when 
 	\begin{align}
@@ -796,18 +799,31 @@ Threshold=$\delta$, \\
  $\implies p_{X}(1)=1-p$
  \begin{align}
  P_{e}=p P(e|s_0)+(1-p)P(e|s_1)\\
- =p Q(1+\delta)+(1-p)Q(1-\delta)\\
+ =p Q(5+\delta)+(1-p)Q(5-\delta)\\
  \frac{d(P_{e})}{d(\delta)}=0\\
- \implies e^\frac{(1+\delta)^{2}-(1-\delta)^{2}}{2}=\frac{p}{1-p}\\
- \therefore \delta=\frac{1}{2}log(\frac{p}{1-p})\\
+ \implies e^\frac{(5+\delta)^{2}-(5-\delta)^{2}}{2}=\frac{p}{1-p}\\
+ \therefore \delta=\frac{1}{10}log(\frac{p}{1-p})\\
   \frac{d(P_{e})}{d(\delta)}\quad at \quad \delta+\epsilon>0 \\
   \nonumber
    \frac{d(P_{e})}{d(\delta)} \quad at\quad \delta-\epsilon<0 \\
    \nonumber
-   \therefore \delta=\frac{1}{2}log(\frac{p}{1-p})\longrightarrow minima
+   \therefore \delta=\frac{1}{10}log\left(\frac{p}{1-p}\right)\longrightarrow minima
  \end{align}
  \\
-\item Repeat the above exercise using the MAP criterion.  
+\item Repeat the above exercise using the MAP criterion. \\
+\solution
+\begin{align}
+&P_{X|Y}\brak{x|y} \big|_{X=1}= \frac{P(Y=y|X=1)P(X=1)}{P(Y=y)}\\
+\begin{split}P(Y=y)=P(Y=y|X=1)P(X=1)\\+P(Y=y|X=-1)P(X=-1)\end{split}\\
+&P(Y=y|X=1)P(X=1)=\frac{1}{2} P(Y=5+N)\\
+&=\frac{1}{2}\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}\\
+&\therefore P_{X|Y}(x|y) \big|_{X=1}=\frac{\frac{1}{2}\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}}{P(Y=y)}\\
+&P_{X|Y}(x|y) \big|_{X=-1}= \frac{P(Y=y|X=-1)P(X=-1)}{P(Y=y)}\\
+&P(Y=y|X=-1)P(X=-1)=\frac{1}{2} P(Y=-5+N)\nonumber\\
+&=\frac{1}{2}\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y+5)^2}{2}}}\\
+&\therefore P_{X|Y}(x|y) \big|_{X=-1}=\frac{\frac{1}{2}\brak{\frac{1}{\sqrt{2\pi}} e^{\frac{-(y+5)^2}{2}}}}{P(Y=y)}
+\end{align}
+Now comparing $a=P_{X|Y}(x|y) \big|_{X=-1}$ and $b=P_{X|Y}(x|y) \big|_{X=1}$, if $a>b, X=-1$ is more likely ,$a<b, X=1$ is more likely. 
 		\end{enumerate}
 \section{Gaussian to Other}
 \begin{enumerate}[label=\thesection.\arabic*
@@ -846,7 +862,7 @@ Use the following command in the terminal to run the code
 \begin{lstlisting}
 python3 chi_pdf.py
 \end{lstlisting}
-\begin{figure}[h]
+\begin{figure}
 \includegraphics[width=0.5\textwidth]{chi_pdf}
 \caption{PDF for (6.1)}
 \label{fig:chi_PDF}
@@ -859,17 +875,15 @@ Use the following command in the terminal to run the code
 \begin{lstlisting}
 python3 chi_cdf.py
 \end{lstlisting}
-\begin{figure}[h]
+\begin{figure}
 \includegraphics[width=0.5\textwidth]{chi_cdf}
 \caption{PDF for (6.1)}
 \label{fig:chi_PDF}
 \end{figure}
-%
-%
+
 %
 \item
 If
-%
 \begin{equation}
 F_{V}(x) = 
 \begin{cases}
@@ -877,11 +891,10 @@ F_{V}(x) =
 0 & x < 0,
 \end{cases}
 \end{equation}
-%
-find $\alpha$.\\
+find $\alpha$.
+\\
 \solution 
 From \eqref{eq:eq6} $\alpha=0.5$
-
 %
 \item
 \label{ch3_raleigh_sim}
@@ -893,14 +906,14 @@ A = \sqrt{V}
 %
 \solution
 \begin{align}
-&F_{A}(a)=P(A<a)=P(V<a^{2})\\
-&\text{from} \eqref{eq:eq6}, 
+F_{A}(a)=P(A<a)=P(V<a^{2})\\
+\text{from} \eqref{eq:eq6}, 
 =\begin{cases}
 1-e^{\frac{-a^{2}}{2}} & a>0\\
 0 & a<=0
 \end{cases}
 \\
-&\implies P_{A}(a)= \frac{d(F_{A}(a))}{da}\\
+\implies P_{A}(a)= \frac{d(F_{A}(a))}{da}\\
 =\begin{cases}
 ae^{\frac{-a^{2}}{2}} & a>0\\
 0 & a<=0
