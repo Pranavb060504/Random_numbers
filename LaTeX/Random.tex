@@ -815,15 +815,21 @@ Threshold=$\delta$, \\
 \begin{align}
 &P_{X|Y}\brak{x|y} \big|_{X=1}= \frac{P(Y=y|X=1)P(X=1)}{P(Y=y)}\\
 \begin{split}P(Y=y)=P(Y=y|X=1)P(X=1)\\+P(Y=y|X=-1)P(X=-1)\end{split}\\
-&P(Y=y|X=1)P(X=1)=\frac{1}{2} P(Y=5+N)\\
-&=\frac{1}{2}\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}\\
-&\therefore P_{X|Y}(x|y) \big|_{X=1}=\frac{\frac{1}{2}\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}}{P(Y=y)}\\
+&P(Y=y|X=1)P(X=1)=p P(Y=5+N)\\
+&=p\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}\\
+&\therefore P_{X|Y}(x|y) \big|_{X=1}=\frac{p\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}}{P(Y=y)}\\
 &P_{X|Y}(x|y) \big|_{X=-1}= \frac{P(Y=y|X=-1)P(X=-1)}{P(Y=y)}\\
-&P(Y=y|X=-1)P(X=-1)=\frac{1}{2} P(Y=-5+N)\nonumber\\
-&=\frac{1}{2}\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y+5)^2}{2}}}\\
-&\therefore P_{X|Y}(x|y) \big|_{X=-1}=\frac{\frac{1}{2}\brak{\frac{1}{\sqrt{2\pi}} e^{\frac{-(y+5)^2}{2}}}}{P(Y=y)}
+&P(Y=y|X=-1)P(X=-1)=(1-p) P(Y=-5+N)\nonumber\\
+&=(1-p)\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y+5)^2}{2}}}\\
+&\therefore P_{X|Y}(x|y) \big|_{X=-1}=\frac{(1-p)\brak{\frac{1}{\sqrt{2\pi}} e^{\frac{-(y+5)^2}{2}}}}{P(Y=y)}
 \end{align}
-Now comparing $a=P_{X|Y}(x|y) \big|_{X=-1}$ and $b=P_{X|Y}(x|y) \big|_{X=1}$, if $a>b, X=-1$ is more likely ,$a<b, X=1$ is more likely. 
+Now comparing $a=P_{X|Y}(x|y) \big|_{X=-1}$ and $b=P_{X|Y}(x|y) \big|_{X=1}$, if $a>b, X=-1$ is more likely ,$a<b, X=1$ is more likely.\\
+$p e^{\frac{-(y-5)^2}{2}}\gtrless(1-p)e^{\frac{-(y+5)^2}{2}}$\\
+$\implies e^{10y}\gtrless\frac{1-p}{p}$\\
+$\implies y\gtrless\frac{1}{10}log\brak{\frac{1-p}{p}}$\\
+$\delta=\frac{1}{10}log\brak{\frac{1-p}{p}}$\\
+$y>\delta \implies$ X=1 is more likely\\
+$y<\delta \implies$ X=-1 is more likely
 		\end{enumerate}
 \section{Gaussian to Other}
 \begin{enumerate}[label=\thesection.\arabic*
@@ -835,7 +841,8 @@ Let $X_1 \sim  \gauss{0}{1}$ and $X_2 \sim  \gauss{0}{1}$. Plot the CDF and PDF 
 V = X_1^2 + X_2^2
 \end{equation}
 %
-\solution The sum of squares of k independent standard random normal variables is nothing but a  $\chi^2$ distribution with k degrees of freedom.\\
+\solution \\
+\textbf{Method1}:The sum of squares of k independent standard random normal variables is nothing but a  $\chi^2$ distribution with k degrees of freedom.\\
 $\chi^{2} (k)= \frac{x^{\frac{n}{2} -1}}{2^{\frac{n}{2}} \Gamma(
 \frac{n}{2})} e^{\frac{-x}{2}}, \forall x\geq 0$\\
 Here k=2,
@@ -845,6 +852,37 @@ Here k=2,
 =1-e^{\frac{-x}{2}}
 \label{eq:eq6}
 \end{align}
+\textbf{Method2:}\begin{align}
+			X_1 = R\cos{\theta} \\
+			X_2 = R\sin{\Theta}
+		\end{align}
+ $R \in [0, \infty), \Theta \in [0, 2\pi)$.  Jacobian Matrix is given by
+		\begin{align}
+			J &= \myvec{\frac{\partial X_1}{\partial R} & \frac{\partial X_2}{\partial R} \\
+						\frac{\partial X_1}{\partial \Theta} & \frac {\partial X_2}{\partial \Theta}} \\
+					&= \myvec{\cos{\Theta} & \sin{\Theta} \\
+							  -R\sin{\Theta} & R\cos{\Theta}} \\
+			\implies |J| &= R
+		\end{align}
+We also know that
+		\begin{align}
+			|J|p_{X_1, X_2}(x_1, x_2) &= p_{R, \Theta}(r, \theta) \\
+			\implies p_{R, \Theta}(r, \theta) &= Rp_{X_1}(x_1)p_{X_2}(x_2)\\
+			&= \frac{R}{2\pi}e^{\brak{-\frac{X_1^2 + X_2^2}{2}}} \\
+			&= \frac{R}{2\pi}e^{\brak{-\frac{R^2}{2}}}
+			\label{eq:joint}
+		\end{align}
+   $X_1, X_2$ are iid random variables. Thus,
+		\begin{align}
+			p_R(r) &= \int_{0}^{2\pi}p_{R, \Theta}(r, \theta)d\theta \\
+			&= R e^{\brak{-\frac{R^2}{2}}}
+		\end{align}
+However, $V = X_1^2 + X_2^2 = R^2 \geq 0$, thus $F_V(x) = 0$ for $x \geq 0$.
+		\begin{align}
+			F_V(x) &= F_R(\sqrt{x}) \\ 
+			&= \int_{0}^{\sqrt{x}}r e^{\brak{-\frac{r^2}{2}}}dr \\
+			&= \int_{0}^{\frac{x}{2}}e^{-t}dt = 1 - e^{-\frac{x}{2}}
+		\end{align}
 To generate data for V , run the following code,
 \begin{lstlisting}
 https://github.com/Pranavb060504/Random_numbers/blob/main/6.1/V_gen.c
