@@ -4,7 +4,7 @@ int main()
 {
     int a,t;
 FILE*fp=fopen("bernoulli.dat","w");
-for(int i=0;i<10000;i++)
+for(int i=0;i<1000000;i++)
 {
     a=rand();
 if(a%2==0){
