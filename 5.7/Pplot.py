@@ -13,8 +13,12 @@ p=np.loadtxt("Pgen.dat",dtype="double")
 with open ("aG.dat","w") as f1:
     for i in range(0,50):
         f1.write(f"{a[i]}\n")   
-simlen = int(1e6) 
+simlen = int(1e4) 
 vec_T_pdf = scipy.vectorize(P)
+# plt.subplot(211)
+# plt.semilogy(a,p,'o')
+# plt.semilogy(a,vec_T_pdf(a))
+# plt.subplot(212)
 plt.plot(a,p,'o')
 plt.plot(a,vec_T_pdf(a))
 plt.grid() #creating the grid
