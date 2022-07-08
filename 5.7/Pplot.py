@@ -13,7 +13,7 @@ p=np.loadtxt("Pgen.dat",dtype="double")
 with open ("aG.dat","w") as f1:
     for i in range(0,50):
         f1.write(f"{a[i]}\n")   
-simlen = int(1e4) 
+simlen = int(1e6) 
 vec_T_pdf = scipy.vectorize(P)
 plt.plot(a,p,'o')
 plt.plot(a,vec_T_pdf(a))
