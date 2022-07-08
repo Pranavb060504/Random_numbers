@@ -736,12 +736,12 @@ and
 Here $s_1$ and $s_2$ are equally probable ie, $p(s_1)=p(s_0)=\frac{1}{2}$ \\
 \begin{align}
 &Q(x)=\frac{1}{\sqrt{2\pi}} \int_{x}^{\infty} e^{\frac{-x^{2}}{2} } dx\\
-&p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{0} e^{-\frac{(y-5)^2}{2}} dy
+&p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{0} e^{-\frac{(y-A)^2}{2}} dy
 \nonumber \\
-&=Q(5)\\
-&p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{0}^{\infty} e^{-\frac{(y+5)^{2}}{2}} dy
+&=Q(A)\\
+&p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{0}^{\infty} e^{-\frac{(y+A)^{2}}{2}} dy
 \nonumber \\
-&=Q(5)
+&=Q(A)
 \end{align}
 %
 \item Find $P_e$ assuming that $X$ has equiprobable symbols.\\
@@ -749,10 +749,11 @@ Here $s_1$ and $s_2$ are equally probable ie, $p(s_1)=p(s_0)=\frac{1}{2}$ \\
 Total probability of bit error:
 \begin{align}
 &P_{e}=p(s_1)p(e|s_1)+p(s_0)p(e|s_0)\\
-&=\frac{1}{2}[Q(5)+Q(5)]\\
+&=\frac{1}{2}[Q(A)+Q(A)]\\
 &\because p(s_1)=p(s_0)=\frac{1}{2},\text{X has equiprobable symbols}\\
 \nonumber
-&=Q(5)
+&=Q(A)
+&=Q(5) \because A=5
 \end{align}
 %
 \item
@@ -760,8 +761,13 @@ Verify by plotting  the theoretical $P_e$ with respect to $A$ from 0 to 10 dB. \
 \solution
 \begin{figure}[!ht]
 \includegraphics[width=0.5\textwidth]{Pplot}
-\caption{plot for (5.7)}
+\caption{semilogyplot for (5.7)}
 \label{fig:P_Plot}
+\end{figure}
+\begin{figure}[!ht]
+\includegraphics[width=0.5\textwidth]{Plt}
+\caption{plot for (5.7)}
+\label{fig:Plt}
 \end{figure}
 \\
 	Run the following code to generate the scatter plot
@@ -778,17 +784,17 @@ Threshold=$\delta$, \\
 \begin{align}
  &y>\delta \implies s_1\\
  &y \leq \delta \implies s_0\\
- &p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\delta} e^{-\frac{(y-5)^{2}}{2}} dy\\
+ &p(e|s_1)=\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\delta} e^{-\frac{(y-A)^{2}}{2}} dy\\
  \nonumber
- &p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{\delta}^{\infty} e^{-\frac{(y+5)^{2}}{2}} dy\\
+ &p(e|s_0)=\frac{1}{\sqrt{2 \pi}} \int_{\delta}^{\infty} e^{-\frac{(y+A)^{2}}{2}} dy\\
 \nonumber
-&P_e=\frac{1}{2\sqrt{2 \pi}}{( \int_{-\infty}^{\delta} e^{-\frac{(y-5)^{2}}{2}}dy+ \int_{\delta}^{\infty} e^{-\frac{(y+5)^{2}}{2}} dy)}\\
-&P_e=\frac{Q(\delta+5)+Q(5-\delta)}{2}\\
+&P_e=\frac{1}{2\sqrt{2 \pi}}{( \int_{-\infty}^{\delta} e^{-\frac{(y-A)^{2}}{2}}dy+ \int_{\delta}^{\infty} e^{-\frac{(y+A)^{2}}{2}} dy)}\\
+&P_e=\frac{Q(\delta+A)+Q(A-\delta)}{2}\\
 &P_e=f(\delta)\\
 &\text{to minimize} P_e, \frac{d(f(\delta))}{d\delta}=0 ~\text{and} f"(\delta)>0\\
-&e^{\frac{-(5-\delta)^{2}}{2}}-e^{\frac{-(5+\delta)^{2}}{2}}=0\\
-&\therefore 5-\delta=5+\delta, \implies \delta=0\\
-&f"(\delta)=k((5-\delta)e^{\frac{-(5-\delta)^{2}}{2}}+(5+\delta)e^{\frac{-(5+\delta)^{2}}{2}})>0
+&e^{\frac{-(A-\delta)^{2}}{2}}-e^{\frac{-(A+\delta)^{2}}{2}}=0\\
+&\therefore A-\delta=A+\delta, \implies \delta=0\\
+&f"(\delta)=k((A-\delta)e^{\frac{-(A-\delta)^{2}}{2}}+(A+\delta)e^{\frac{-(A+\delta)^{2}}{2}})>0
 \end{align}
 \item Repeat the above exercise when 
 	\begin{align}
@@ -799,15 +805,16 @@ Threshold=$\delta$, \\
  $\implies p_{X}(1)=1-p$
  \begin{align}
  P_{e}=p P(e|s_0)+(1-p)P(e|s_1)\\
- =p Q(5+\delta)+(1-p)Q(5-\delta)\\
+ =p Q(A+\delta)+(1-p)Q(A-\delta)\\
  \frac{d(P_{e})}{d(\delta)}=0\\
- \implies e^\frac{(5+\delta)^{2}-(5-\delta)^{2}}{2}=\frac{p}{1-p}\\
- \therefore \delta=\frac{1}{10}log(\frac{p}{1-p})\\
+ \implies e^\frac{(A+\delta)^{2}-(A-\delta)^{2}}{2}=\frac{p}{1-p}\\
+ \therefore \delta=\frac{1}{2A}log(\frac{p}{1-p})\\
   \frac{d(P_{e})}{d(\delta)}\quad at \quad \delta+\epsilon>0 \\
   \nonumber
    \frac{d(P_{e})}{d(\delta)} \quad at\quad \delta-\epsilon<0 \\
    \nonumber
-   \therefore \delta=\frac{1}{10}log\left(\frac{p}{1-p}\right)\longrightarrow minima
+   \therefore \delta=\frac{1}{2A}log\left(\frac{p}{1-p}\right)\longrightarrow   minima\\
+   A=5 \implies \delta=\frac{1}{10}log\left(\frac{p}{1-p}\right)
  \end{align}
  \\
 \item Repeat the above exercise using the MAP criterion. \\
@@ -815,19 +822,19 @@ Threshold=$\delta$, \\
 \begin{align}
 &P_{X|Y}\brak{x|y} \big|_{X=1}= \frac{P(Y=y|X=1)P(X=1)}{P(Y=y)}\\
 \begin{split}P(Y=y)=P(Y=y|X=1)P(X=1)\\+P(Y=y|X=-1)P(X=-1)\end{split}\\
-&P(Y=y|X=1)P(X=1)=p P(Y=5+N)\\
-&=p\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}\\
-&\therefore P_{X|Y}(x|y) \big|_{X=1}=\frac{p\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-5)^2}{2}}}}{P(Y=y)}\\
+&P(Y=y|X=1)P(X=1)=p P(Y=A+N)\\
+&=p\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-A)^2}{2}}}\\
+&\therefore P_{X|Y}(x|y) \big|_{X=1}=\frac{p\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y-A)^2}{2}}}}{P(Y=y)}\\
 &P_{X|Y}(x|y) \big|_{X=-1}= \frac{P(Y=y|X=-1)P(X=-1)}{P(Y=y)}\\
-&P(Y=y|X=-1)P(X=-1)=(1-p) P(Y=-5+N)\nonumber\\
-&=(1-p)\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y+5)^2}{2}}}\\
-&\therefore P_{X|Y}(x|y) \big|_{X=-1}=\frac{(1-p)\brak{\frac{1}{\sqrt{2\pi}} e^{\frac{-(y+5)^2}{2}}}}{P(Y=y)}
+&P(Y=y|X=-1)P(X=-1)=(1-p) P(Y=-A+N)\nonumber\\
+&=(1-p)\brak{\frac{1}{\sqrt{2 \pi}} e^{\frac{-(y+A)^2}{2}}}\\
+&\therefore P_{X|Y}(x|y) \big|_{X=-1}=\frac{(1-p)\brak{\frac{1}{\sqrt{2\pi}} e^{\frac{-(y+A)^2}{2}}}}{P(Y=y)}
 \end{align}
 Now comparing $a=P_{X|Y}(x|y) \big|_{X=-1}$ and $b=P_{X|Y}(x|y) \big|_{X=1}$, if $a>b, X=-1$ is more likely ,$a<b, X=1$ is more likely.\\
-$p e^{\frac{-(y-5)^2}{2}}\gtrless(1-p)e^{\frac{-(y+5)^2}{2}}$\\
-$\implies e^{10y}\gtrless\frac{1-p}{p}$\\
-$\implies y\gtrless\frac{1}{10}log\brak{\frac{1-p}{p}}$\\
-$\delta=\frac{1}{10}log\brak{\frac{1-p}{p}}$\\
+$p e^{\frac{-(y-A)^2}{2}}\gtrless(1-p)e^{\frac{-(y+A)^2}{2}}$\\
+$\implies e^{2Ay}\gtrless\frac{1-p}{p}$\\
+$\implies y\gtrless\frac{1}{2A}log\brak{\frac{1-p}{p}}$\\
+$\delta=\frac{1}{2A}log\brak{\frac{1-p}{p}}$\\
 $y>\delta \implies$ X=1 is more likely\\
 $y<\delta \implies$ X=-1 is more likely
 		\end{enumerate}
