@@ -8,6 +8,6 @@ int  main(void) //main function begins
  
 
 //Gaussian random numbers
-gaussian("gau3.dat", 10000);
+gaussian("gau3.dat", 1000000);
 return 0;
 }
