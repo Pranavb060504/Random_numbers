@@ -1018,8 +1018,17 @@ where $A$ is Raleigh with $E\sbrak{A^2} = \gamma, N \sim \gauss{0}{1}, X \in \br
 
 %
 \item
-Assuming that $N$ is a constant, find an expression for $P_e$.  Call this $P_e(N)$
-
+Assuming that $N$ is a constant, find an expression for $P_e$.  Call this $P_e(N)$\\
+\solution
+We rewrite the previous expression for $P_e$ as
+\begin{align}
+	P_e(N) &= \pr{A < -N} = F_A(-N) \\
+	&= 
+	\begin{cases}
+		1 - e^{-\frac{N^2}{\gamma}} & N \leq 0 \\
+		0 & N > 0
+	\end{cases}
+\end{align}
 %
 \item
 %
@@ -1029,7 +1038,17 @@ For a function $g$,
 E\sbrak{g(X)} = \int_{-\infty}^{\infty}g(x)p_{X}(x)\, dx
 \end{equation}
 %
-Find $P_e = E\sbrak{P_e(N)}$.
+Find $P_e = E\sbrak{P_e(N)}$.\\
+\solution
+We write,
+		\begin{align}
+			P_e &= \int_{0}^{\infty}F_A(x)f_N(x)dx \\
+			&= \int_{0}^{\infty}(1 - e^{-\frac{x^2}{\gamma}})\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
+			&= \frac{1}{2} - \frac{1}{\sqrt{2\pi}}\int_{0}^{\infty}\exp{\brak{-\frac{x^2}{\frac{2\gamma}{\gamma + 2}}}}dx \\
+			&= \frac{1}{2}\brak{1 - \sqrt{\frac{\gamma}{\gamma + 2}}}
+			\label{eq:jj}
+		\end{align}
+where $f_N$ denotes the standard normal distribution. 
 
 %
 \item
