@@ -1130,11 +1130,41 @@ Plot
 \mbf{y}|\mbf{s}_0 \text{ and } \mbf{y}|\mbf{s}_1
 \end{equation}
 %
-on the same graph using a scatter plot.
-
+on the same graph using a scatter plot.\\
+\solution
+Run the following code to generate data.
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/8.1/2d.c
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+cc 2d.c -lm
+\end{lstlisting}
+After generating data run the following python file to get the scatter plot
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/8.1/2d.py
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 2d.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{2D}
+\caption{scatter plot for (8.1)}
+\label{fig:S2d}
+\end{figure}
 %
 \item
-For the above problem, find a decision rule for detecting the symbols $\mbf{s}_0 $ and $\mbf{s}_1$.
+For the above problem, find a decision rule for detecting the symbols $\mbf{s}_0 $ and $\mbf{s}_1$.\\
+\solution
+\begin{align}
+	\hat{\vec{x}} = 
+	\begin{cases}
+		\vec{s}_0 & i > j \\
+		\vec{s}_1 & i < j
+	\end{cases}
+\end{align}
+where $\vec{y} = \myvec{i\\ j}$
 
 %
 \item
@@ -1146,7 +1176,17 @@ with respect to the SNR from 0 to 10 dB.
 
 %
 \item
-Obtain an expression for $P_e$. Verify this by comparing the theory and simulation plots on the same graph.
+Obtain an expression for $P_e$. Verify this by comparing the theory and simulation plots on the same graph.\\
+\solution
+We have, 
+\begin{align}
+	P_e &= P(\hat{\vec{x}} = \vec{s}_1 | \vec{x} = \vec{s}_0) \\
+		&= P(i < j | \vec{x} = \vec{s}_0) \\
+		&= P(A + n_1 < -A + n_2) \\
+		&= P(n_2 - n_1 > 2A) \\
+		&= P(N > 2A) = \qfunc{\sqrt{2}A}
+\end{align}
+where $N \define n_2 - n_1 \sim \gauss{0}{2}$ and $\textrm{SNR} = \frac{E\sbrak{A^2}}{\sigma_N^2}$.
 
 %
 		\end{enumerate}
