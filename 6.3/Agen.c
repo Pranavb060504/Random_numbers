@@ -4,7 +4,7 @@
 #include "coeffs.h"
 #define N 1000000
 int main(){
-    FILE*fp=fopen("chi.dat","r");
+    FILE*fp=fopen("G.dat","r");
     FILE*f1=fopen("A.dat","w");
     double t;
     for(int i=0;i<N;i++){
