@@ -892,11 +892,11 @@ However, $V = X_1^2 + X_2^2 = R^2 \geq 0$, thus $F_V(x) = 0$ for $x \geq 0$.
 		\end{align}
 To generate data for V , run the following code,
 \begin{lstlisting}
-https://github.com/Pranavb060504/Random_numbers/blob/main/6.1/V_gen.c
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.1/G_gen.c
 \end{lstlisting}
 Run the below command in terminal,
 \begin{lstlisting}
-cc V_gen.c -lm
+cc G_gen.c -lm
 ./a.out
 \end{lstlisting}
 The PDF plot of the $\chi^{2} (2)$ can be obtained by running the code below,
@@ -966,11 +966,11 @@ ae^{\frac{-a^{2}}{2}} & a>0\\
 \end{align}
 To generate data for A , run the following code,
 \begin{lstlisting}
-https://github.com/Pranavb060504/Random_numbers/blob/main/6.3/A_gen.c
+https://github.com/Pranavb060504/Random_numbers/blob/main/6.3/Agen.c
 \end{lstlisting}
 Run the below command in terminal,
 \begin{lstlisting}
-cc A_gen.c -lm
+cc Agen.c -lm
 ./a.out
 \end{lstlisting}
 The PDF plot of A can be obtained by running the code below,
@@ -1014,15 +1014,37 @@ for
 \begin{equation}
 Y = AX+N,
 \end{equation}
-where $A$ is Raleigh with $E\sbrak{A^2} = \gamma, N \sim \gauss{0}{1}, X \in \brak{-1,1}$ for $0 \le \gamma \le 10$ dB.
-
+where $A$ is Raleigh with $E\sbrak{A^2} = \gamma, N \sim \gauss{0}{1}, X \in \brak{-1,1}$ for $0 \le \gamma \le 10$ dB.\\
+\solution
+Run the following code to generate Y
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/7.1/Ray.c
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+cc Ray.c -lm
+\end{lstlisting}
+After generating Y, run the below code to plot points
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/7.1/Raypts.c
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 Raypts.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{Raypts}
+\caption{plot for 7.1}
+\label{fig:Plot7.1}
+\end{figure}
 %
 \item
 Assuming that $N$ is a constant, find an expression for $P_e$.  Call this $P_e(N)$\\
 \solution
 We rewrite the previous expression for $P_e$ as
 \begin{align}
-	P_e(N) &= \pr{A < -N} = F_A(-N) \\
+	P_e(N) &=\pr{A+N<0}\\ \nonumber
+	&= \pr{A < -N} = F_A(-N) \\
 	&= 
 	\begin{cases}
 		1 - e^{-\frac{N^2}{\gamma}} & N \leq 0 \\
@@ -1040,20 +1062,31 @@ E\sbrak{g(X)} = \int_{-\infty}^{\infty}g(x)p_{X}(x)\, dx
 %
 Find $P_e = E\sbrak{P_e(N)}$.\\
 \solution
-We write,
 		\begin{align}
-			P_e &= \int_{0}^{\infty}F_A(x)f_N(x)dx \\
+			P_e &= \int_{0}^{\infty}F_A(x)p_{X}(x)dx \\
 			&= \int_{0}^{\infty}(1 - e^{-\frac{x^2}{\gamma}})\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \\
 			&= \frac{1}{2} - \frac{1}{\sqrt{2\pi}}\int_{0}^{\infty}\exp{\brak{-\frac{x^2}{\frac{2\gamma}{\gamma + 2}}}}dx \\
 			&= \frac{1}{2}\brak{1 - \sqrt{\frac{\gamma}{\gamma + 2}}}
 			\label{eq:jj}
 		\end{align}
-where $f_N$ denotes the standard normal distribution. 
-
 %
 \item
-Plot $P_e$ in problems \ref{ch4_sim} and \ref{ch4_anal} on the same graph w.r.t $\gamma$.  Comment.
-
+Plot $P_e$ in problems \ref{ch4_sim} and \ref{ch4_anal} on the same graph w.r.t $\gamma$.  Comment.\\
+\solution
+Run the below code to plot pdf
+\begin{lstlisting}
+https://github.com/Pranavb060504/Random_numbers/blob/main/7.3/Rayplot.py
+\end{lstlisting}
+Use the following command in the terminal to run the code
+\begin{lstlisting}
+python3 Rayplot.py
+\end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{Raypdf}
+\caption{PDF for (7.3)}
+\label{fig:PDF7.3}
+\end{figure}
+We observe $P_{e|0}=E[P_{e}(N)]$.
 		\end{enumerate}
 \section{Two Dimensions}
 Let 
