@@ -14,6 +14,8 @@ void uniform(char *str, int len);
 void gaussian(char *str, int len);
 double mean(char *str);
 double var(char*str);
+double chi(int k,double s);
+double gau();
 //End function declaration
 
 
@@ -267,4 +269,20 @@ while(fscanf(fp, "%lf", &t)!=-1){
     b=(squares/count)-(mean(str)*mean(str));
     fclose(fp);
     return b;
+}
+double gau(){
+  double t = 0;
+for (int j = 0; j < 12; j++)
+{
+t += (double)rand()/RAND_MAX;
+}
+t-=6;
+return t;
+}
+double chi(int k,double s){
+  double c=0;
+	for(int i=0;i<k;i++){
+c=c+(pow(s*gau(),2));
+  }
+  return c;
 }
