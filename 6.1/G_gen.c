@@ -2,17 +2,13 @@
 #include <stdlib.h>
 #include <math.h>
 #include "coeffs.h"
-
+#define N 1000000
 int  main(void) //main function begins
 {
- 
-//Uniform random numbers
-gaussian("gau1.dat", 1000000);
-
-//Uniform random numbers
-gaussian("gau2.dat", 1000000);
-
-//Mean of uniform
-//printf("%lf",mean("uni.dat"));
+ FILE*fp=fopen("G.dat","w");
+ for(int i=0;i<N;i++){
+  fprintf(fp,"%lf\n",chi(2,1));
+ }
+fclose(fp);
 return 0;
 }
