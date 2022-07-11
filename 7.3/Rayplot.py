@@ -24,10 +24,8 @@ def Gam_pdf(y):
     return (0.5*(1-math.sqrt(y/(y+2))))
 vec_Gam_pdf = scipy.vectorize(Gam_pdf)
 
-plt.plot(x[0:(maxrange)].T,randvar,'o')
-plt.plot(x,vec_Gam_pdf(x))
-# plt.semilogy(x[0:(maxrange)].T,randvar,'o')
-# plt.semilogy(x,vec_Gam_pdf(x))
+# plt.plot(x[0:(maxrange)].T,randvar,'o')
+# plt.plot(x,vec_Gam_pdf(x))
 plt.grid() #creating the grid
 plt.xlabel('$x_i$')
 plt.ylabel('$p_X(x_i)$')
