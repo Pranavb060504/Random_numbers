@@ -1153,10 +1153,34 @@ python3 2d.py
 \caption{scatter plot for (8.1)}
 \label{fig:S2d}
 \end{figure}
+Decision boundary:$y=x$
 %
 \item
 For the above problem, find a decision rule for detecting the symbols $\mbf{s}_0 $ and $\mbf{s}_1$.\\
 \solution
+Since $n_1. n_2$ are i.i.d 
+\begin{align}
+    p(n_1,n_2) &= p(n_1)p(n_2)\\
+&= \frac{1}{\sqrt{2\pi}} e^{-\frac{n_1^2}{2}} \frac{1}{\sqrt{2\pi}} e^{-\frac{n_2^2}{2}}\\
+&= \frac{1}{2\pi}e^{-\frac{n_1^2+n_2^2}{2}}
+\end{align}
+Also 
+\begin{align}
+    p(y|s_0) &= p(n_1 = i-A, n_2 = j)\\
+    &= \frac{1}{2\pi}e^{-\frac{{(i-A)}^2+j^2}{2}}
+\end{align}
+Similarly 
+\begin{align}
+    p(y|s_1) = \frac{1}{2\pi}e^{-\frac{i^2+{(j-A)}/^2}{2}}
+\end{align}
+MAP criterion:
+\begin{align}
+    p(y|s_0) &\dec{s_0}{s_1} p(y|s_1)\\
+    \frac{1}{2\pi}e^{-\frac{{(i-A)}^2+j^2}{2}} &\dec{s_0}{s_1} \frac{1}{2\pi}e^{-\frac{i^2+{(j-A)}/^2}{2}}\\
+    {(y_1-A)}^2+y_2^2 &\dec{s_0}{s_1} i^2+{(j-A)}^2\\
+    -2iA  &\dec{s_0}{s_1} -2jA\\
+    i &\dec{s_0}{s_1} j
+\end{align}
 \begin{align}
 	\hat{\vec{x}} = 
 	\begin{cases}
@@ -1189,6 +1213,11 @@ Use the following command in the terminal to run the code
 \begin{lstlisting}
 python3 2dSNR.py
 \end{lstlisting}
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{2dSNR}
+\caption{scatter plot for (8.3)}
+\label{fig:S2dSNR}
+\end{figure}
 
 %
 \item
